@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-order-details-heading"
+        data-cy="OrderDetailsCreateUpdateHeading"
+        jhiTranslate="wikunumApp.inventoryManagementOrderDetails.home.createOrEditLabel"
+      >
+        Create or edit a Order Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrderDetails.notes" for="field_notes">Notes</label>
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrderDetails.orderedQty" for="field_orderedQty"
+            >Ordered Qty</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="orderedQty"
+            id="field_orderedQty"
+            data-cy="orderedQty"
+            formControlName="orderedQty"
+          />
+          <div *ngIf="editForm.get('orderedQty')!.invalid && (editForm.get('orderedQty')!.dirty || editForm.get('orderedQty')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderedQty')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('orderedQty')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrderDetails.order" for="field_order">Order</label>
+          <select class="form-control" id="field_order" data-cy="order" name="order" formControlName="order" [compareWith]="compareOrder">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="orderOption" *ngFor="let orderOption of ordersSharedCollection">{{ orderOption.orderNumber }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrderDetails.item" for="field_item">Item</label>
+          <select class="form-control" id="field_item" data-cy="item" name="item" formControlName="item" [compareWith]="compareItem">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="itemOption" *ngFor="let itemOption of itemsSharedCollection">{{ itemOption.itemCode }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

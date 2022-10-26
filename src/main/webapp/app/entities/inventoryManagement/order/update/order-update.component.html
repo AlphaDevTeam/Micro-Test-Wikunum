@@ -1,0 +1,190 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-order-heading"
+        data-cy="OrderCreateUpdateHeading"
+        jhiTranslate="wikunumApp.inventoryManagementOrder.home.createOrEditLabel"
+      >
+        Create or edit a Order
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.orderID" for="field_orderID">Order ID</label>
+          <input type="text" class="form-control" name="orderID" id="field_orderID" data-cy="orderID" formControlName="orderID" />
+          <div *ngIf="editForm.get('orderID')!.invalid && (editForm.get('orderID')!.dirty || editForm.get('orderID')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderID')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.orderNumber" for="field_orderNumber"
+            >Order Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="orderNumber"
+            id="field_orderNumber"
+            data-cy="orderNumber"
+            formControlName="orderNumber"
+          />
+          <div *ngIf="editForm.get('orderNumber')!.invalid && (editForm.get('orderNumber')!.dirty || editForm.get('orderNumber')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.customerCode" for="field_customerCode"
+            >Customer Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="customerCode"
+            id="field_customerCode"
+            data-cy="customerCode"
+            formControlName="customerCode"
+          />
+          <div
+            *ngIf="editForm.get('customerCode')!.invalid && (editForm.get('customerCode')!.dirty || editForm.get('customerCode')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('customerCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.createdDate" for="field_createdDate"
+            >Created Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.transactionID" for="field_transactionID"
+            >Transaction ID</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionID"
+            id="field_transactionID"
+            data-cy="transactionID"
+            formControlName="transactionID"
+          />
+          <div
+            *ngIf="
+              editForm.get('transactionID')!.invalid && (editForm.get('transactionID')!.dirty || editForm.get('transactionID')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('transactionID')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.locationCode" for="field_locationCode"
+            >Location Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="locationCode"
+            id="field_locationCode"
+            data-cy="locationCode"
+            formControlName="locationCode"
+          />
+          <div
+            *ngIf="editForm.get('locationCode')!.invalid && (editForm.get('locationCode')!.dirty || editForm.get('locationCode')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('locationCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementOrder.tenantCode" for="field_tenantCode">Tenant Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tenantCode"
+            id="field_tenantCode"
+            data-cy="tenantCode"
+            formControlName="tenantCode"
+          />
+          <div *ngIf="editForm.get('tenantCode')!.invalid && (editForm.get('tenantCode')!.dirty || editForm.get('tenantCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tenantCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

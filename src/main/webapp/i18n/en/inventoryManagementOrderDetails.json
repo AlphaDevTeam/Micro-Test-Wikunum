@@ -1,0 +1,31 @@
+{
+  "wikunumApp": {
+    "inventoryManagementOrderDetails": {
+      "home": {
+        "title": "Order Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Order Details",
+        "createOrEditLabel": "Create or edit a Order Details",
+        "notFound": "No Order Details found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Order Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Details"
+      },
+      "id": "ID",
+      "notes": "Notes",
+      "orderedQty": "Ordered Qty",
+      "order": "Order",
+      "item": "Item"
+    }
+  },
+  "inventoryManagementApp": {
+    "inventoryManagementOrderDetails": {
+      "created": "A new Order Details is created with identifier {{ param }}",
+      "updated": "A Order Details is updated with identifier {{ param }}",
+      "deleted": "A Order Details is deleted with identifier {{ param }}"
+    }
+  }
+}

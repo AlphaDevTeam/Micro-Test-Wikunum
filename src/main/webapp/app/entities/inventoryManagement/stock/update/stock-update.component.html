@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-stock-heading"
+        data-cy="StockCreateUpdateHeading"
+        jhiTranslate="wikunumApp.inventoryManagementStock.home.createOrEditLabel"
+      >
+        Create or edit a Stock
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementStock.stockQty" for="field_stockQty">Stock Qty</label>
+          <input type="number" class="form-control" name="stockQty" id="field_stockQty" data-cy="stockQty" formControlName="stockQty" />
+          <div *ngIf="editForm.get('stockQty')!.invalid && (editForm.get('stockQty')!.dirty || editForm.get('stockQty')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('stockQty')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('stockQty')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementStock.locationCode" for="field_locationCode"
+            >Location Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="locationCode"
+            id="field_locationCode"
+            data-cy="locationCode"
+            formControlName="locationCode"
+          />
+          <div
+            *ngIf="editForm.get('locationCode')!.invalid && (editForm.get('locationCode')!.dirty || editForm.get('locationCode')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('locationCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementStock.tenantCode" for="field_tenantCode">Tenant Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tenantCode"
+            id="field_tenantCode"
+            data-cy="tenantCode"
+            formControlName="tenantCode"
+          />
+          <div *ngIf="editForm.get('tenantCode')!.invalid && (editForm.get('tenantCode')!.dirty || editForm.get('tenantCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tenantCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="wikunumApp.inventoryManagementStock.item" for="field_item">Item</label>
+          <select class="form-control" id="field_item" data-cy="item" name="item" formControlName="item" [compareWith]="compareItem">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="itemOption" *ngFor="let itemOption of itemsSharedCollection">{{ itemOption.itemCode }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

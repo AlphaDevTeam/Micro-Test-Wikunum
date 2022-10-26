@@ -1,0 +1,34 @@
+{
+  "wikunumApp": {
+    "inventoryManagementOrder": {
+      "home": {
+        "title": "Orders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Order",
+        "createOrEditLabel": "Create or edit a Order",
+        "notFound": "No Orders found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Order {{ id }}?"
+      },
+      "detail": {
+        "title": "Order"
+      },
+      "id": "ID",
+      "orderID": "Order ID",
+      "orderNumber": "Order Number",
+      "customerCode": "Customer Code",
+      "createdDate": "Created Date",
+      "transactionID": "Transaction ID",
+      "locationCode": "Location Code",
+      "tenantCode": "Tenant Code"
+    }
+  },
+  "inventoryManagementApp": {
+    "inventoryManagementOrder": {
+      "created": "A new Order is created with identifier {{ param }}",
+      "updated": "A Order is updated with identifier {{ param }}",
+      "deleted": "A Order is deleted with identifier {{ param }}"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orderDetails">
+      <h2 data-cy="orderDetailsDetailsHeading">
+        <span jhiTranslate="wikunumApp.inventoryManagementOrderDetails.detail.title">Order Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ orderDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="wikunumApp.inventoryManagementOrderDetails.notes">Notes</span></dt>
+        <dd>
+          <span>{{ orderDetails.notes }}</span>
+        </dd>
+        <dt><span jhiTranslate="wikunumApp.inventoryManagementOrderDetails.orderedQty">Ordered Qty</span></dt>
+        <dd>
+          <span>{{ orderDetails.orderedQty }}</span>
+        </dd>
+        <dt><span jhiTranslate="wikunumApp.inventoryManagementOrderDetails.order">Order</span></dt>
+        <dd>
+          <div *ngIf="orderDetails.order">
+            <a [routerLink]="['/order', orderDetails.order.id, 'view']">{{ orderDetails.order.orderNumber }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="wikunumApp.inventoryManagementOrderDetails.item">Item</span></dt>
+        <dd>
+          <div *ngIf="orderDetails.item">
+            <a [routerLink]="['/item', orderDetails.item.id, 'view']">{{ orderDetails.item.itemCode }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/order-details', orderDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
